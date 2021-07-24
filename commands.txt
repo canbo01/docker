@@ -1,0 +1,53 @@
+#Create a Container(with name)
+docker container run --name firstcontainer canbo01/dockeregitim:deneme
+
+#Running Container List
+docker container ls
+
+#All Container List(within removed)
+docker container ls -a
+
+#Create a Container with port
+docker container run -p 80:80 nginx
+
+#Run the Container after run the command 
+docker container run -p 80:80 canbo01/dockeregitim:deneme python app1
+
+#Stop container
+docker container stop [Container ID or Container Name]
+
+#Run the container in detach mode (in background)
+docker container run -d -p 80:80 nginx
+
+#All Container List(within removed)
+docker ps -a
+
+#Remove a Container(if the container is running force it to remove it)
+docker container rm -f [Container ID or Container Name]
+
+#Connection a Running Container
+docker container exec -it [Container ID or Container Name] sh
+
+#Remove All Container
+docker container prune
+
+#Remove All Image
+docker image prune -a
+
+#Creating a Volume
+docker volume create firstvolume
+
+#Deleting a Volume
+docker volume rm firstvolume
+
+#Inspect a Volume
+docker volume inspect firstvolume
+
+#Mount a Volume, if it does not exit, create this file
+docker container run -d --name web_server1 -p 80:80 -v firstvolume:/usr/share/nginx/html nginx sh
+
+#Read only Mount(if container was deleted mounted file doesnt delete)
+docker container run -it -v firstvolume:/app:ro alpine sh
+
+#Create a Containter but delete this container when I exit
+docker container run --rm -it nginx sh
